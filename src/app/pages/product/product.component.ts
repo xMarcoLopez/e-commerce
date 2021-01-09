@@ -1,29 +1,61 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Product } from 'src/app/models/product.model';
 import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styles: [
-  ]
+  styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
 
-  products: Product[] = [];
+  productForm: FormGroup;
 
-  constructor(private productService: ProductService) { }
-
-  ngOnInit() {
-    this.productService.getProducts()
-    .subscribe( resp => {
-      this.products = resp;
-    },
-    err => {
-      console.log(err);
-    });
-
-      
+  constructor(private fb: FormBuilder,
+              private productService: ProductService) {
+    this.createProductForm();
   }
 
+  ngOnInit(): void {
+  }
+
+  get invalidName() {
+    return this.productForm.get('name').invalid && this.productForm.get('name').touched;
+  }
+
+  get invalidPrice() {
+    return this.productForm.get('price').invalid && this.productForm.get('price').touched;
+  }
+
+  get invalidAmount() {
+    return this.productForm.get('amount').invalid && this.productForm.get('amount').touched;
+  }
+
+  createProductForm() {
+    // pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+    this.productForm = this.fb.group({
+      code: [''],
+      name: ['', Validators.required],
+      price: ['', [Validators.required, Validators.min(1)]],
+      amount: ['', [Validators.required, Validators.min(1)]],
+    });
+  }
+
+  saveProduct() {
+    const product = new Product();
+    if (this.productForm.invalid) {
+      Object.values(this.productForm.controls).forEach(control => {
+        control.markAllAsTouched();
+      });
+    } else {
+      product.code = this.productForm.get('code').value;
+      product.name = this.productForm.get('name').value;
+      product.price = this.productForm.get('price').value;
+      product.amount = this.productForm.get('amount').value;
+      console.log(product);
+      this.productService.saveProduct(product).subscribe();
+      // this.productForm.reset();
+    }
+  }
 }

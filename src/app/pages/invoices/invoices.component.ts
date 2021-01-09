@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-invoice',
-  templateUrl: './invoice.component.html',
+  selector: 'app-invoices',
+  templateUrl: './invoices.component.html',
   styles: [
   ]
 })
-export class InvoiceComponent implements OnInit {
+export class InvoicesComponent implements OnInit {
 
   constructor() { }
 

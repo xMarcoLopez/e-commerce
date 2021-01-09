@@ -1,31 +1,44 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { PagesComponent } from './pages.component';
-import { SharedModule } from '../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { UserComponent } from './user/user.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+// Modules
+import { SharedModule } from '../shared/shared.module';
+
+// Components
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { PagesComponent } from './pages.component';
+import { UsersComponent } from './users/users.component';
+import { ProductsComponent } from './products/products.component';
+import { InvoicesComponent } from './invoices/invoices.component';
 import { ProductComponent } from './product/product.component';
-import { InvoiceComponent } from './invoice/invoice.component';
 
 @NgModule({
   declarations: [
-    DashboardComponent,   
-    PagesComponent, 
-    UserComponent, 
-    ProductComponent,
-    InvoiceComponent
+    DashboardComponent,
+    PagesComponent,
+    UsersComponent,
+    ProductsComponent,
+    InvoicesComponent,
+    ProductComponent
   ],
-  exports: [
-    DashboardComponent,   
-    PagesComponent
+  exports: [ 
+    DashboardComponent,
+    PagesComponent,
+    UsersComponent,
+    ProductsComponent,
+    InvoicesComponent,
+    ProductComponent
   ],
   imports: [
     CommonModule,
-    SharedModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class PagesModule { }

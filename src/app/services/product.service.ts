@@ -11,11 +11,26 @@ const base_url = environment.base_url;
 })
 export class ProductService {
 
+  productURL = `${base_url}/products/`;
+
   constructor(private http: HttpClient) { }
 
-   getProducts(): Observable<Product[]> {
-    const url = `${base_url}/products`;
-    return this.http.get<Product[]>(url);
-  } 
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.productURL);
+  }
 
+  findProductById(){
+
+  }
+  saveProduct(product: Product) {
+    return this.http.post(this.productURL, product);
+  }
+
+  updateProduct(){
+
+  }
+
+  deleteProduct(){
+    
+  }
 }
