@@ -3,15 +3,18 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    BreadcrumbsComponent
   ],
   exports:[
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    BreadcrumbsComponent
   ],
   imports: [
     CommonModule,

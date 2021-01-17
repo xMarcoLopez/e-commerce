@@ -1,4 +1,44 @@
-<h1>Lista de Productos</h1>
+<div class="card">
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table class="table mt-3">
+            <thead class="table-dark">
+                <tr>
+                    <th class="text-center" scope="col">#</th>
+                    <th class="text-center" scope="col">Código</th>
+                    <th class="text-center" scope="col">Nombre</th>
+                    <th class="text-center" scope="col">Precio</th>
+                    <th class="text-center" scope="col">Cantidad</th>
+                    <th class="text-center" scope="col">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of products; let i = index">
+                    <th scope="row" class="text-center">{{ i + 1 }}</th>
+                    <td class="text-center">{{ product.code }}</td>
+                    <td class="text-center">{{ product.name }}</td>
+                    <td class="text-center">{{ product.price }}</td>
+                    <td class="text-center">{{ product.amount }}</td>
+                    <td class="text-center">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <a class="btn btn-info"> <i class="fa fa-pencil-square-o"></i>
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <a class="btn btn-danger"> <i class="fa fa-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+
+<!-- <h1>Lista de Productos</h1>
 <hr>
 <div class="row">
     <div class="col-md-10">
@@ -84,4 +124,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
