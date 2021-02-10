@@ -1,6 +1,11 @@
 <div class="card">
     <!-- /.card-header -->
     <div class="card-body">
+
+        <a class="btn btn-primary" [routerLink]="['/dashboard/product/new']">
+            <i class="fa fa-plus"> Agregar</i>
+        </a>
+
         <table class="table mt-3">
             <thead class="table-dark">
                 <tr>
@@ -14,7 +19,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let product of products; let i = index">
-                    <th scope="row" class="text-center">{{ i + 1 }}</th>
+                    <td scope="row" class="text-center">{{ i + 1 }}</td>
                     <td class="text-center">{{ product.code }}</td>
                     <td class="text-center">{{ product.name }}</td>
                     <td class="text-center">{{ product.price }}</td>
@@ -22,12 +27,12 @@
                     <td class="text-center">
                         <div class="row">
                             <div class="col-md-4">
-                                <a class="btn btn-info"> <i class="fa fa-pencil-square-o"></i>
-                                </a>
+                                <button class="btn btn-info" [routerLink]="['/product', product.id]"> <i class="fa fa-pencil-square-o"></i>
+                                </button>
                             </div>
                             <div class="col-md-4">
-                                <a class="btn btn-danger"> <i class="fa fa-trash"></i>
-                                </a>
+                                <button class="btn btn-danger" (click)="deleteProduct(product, product.id)"> <i class="fa fa-trash"></i>
+                                </button>
                             </div>
                         </div>
                     </td>
@@ -84,7 +89,7 @@
             </td>
         </tr>
     </tbody>
-</table>
+</table> 
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">

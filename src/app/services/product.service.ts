@@ -19,18 +19,18 @@ export class ProductService {
     return this.http.get<Product[]>(this.productURL);
   }
 
-  findProductById(){
-
+  findProductById(id: number): Observable<Product> {
+    return this.http.get<Product>(`${this.productURL}detail/${id}`);
   }
   saveProduct(product: Product) {
     return this.http.post(this.productURL, product);
   }
 
-  updateProduct(){
-
+  updateProduct(id: number, product: Product) {
+    return this.http.put<Product>(`${this.productURL}/${id}`, product);
   }
 
-  deleteProduct(){
-    
+  deleteProduct(id: number) {
+    return this.http.delete<Product>(`${this.productURL}/${id}`);
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product.model';
 import { ProductService } from '../../services/product.service';
 
@@ -13,7 +14,7 @@ export class ProductComponent implements OnInit {
   productForm: FormGroup;
 
   constructor(private fb: FormBuilder,
-              private productService: ProductService) {
+              private productService: ProductService, private router: Router) {
     this.createProductForm();
   }
 
@@ -48,14 +49,13 @@ export class ProductComponent implements OnInit {
       Object.values(this.productForm.controls).forEach(control => {
         control.markAllAsTouched();
       });
-    } else {
-      product.code = this.productForm.get('code').value;
-      product.name = this.productForm.get('name').value;
-      product.price = this.productForm.get('price').value;
-      product.amount = this.productForm.get('amount').value;
-      console.log(product);
-      this.productService.saveProduct(product).subscribe();
-      // this.productForm.reset();
     }
+    product.name = this.productForm.get('name').value;
+    product.price = this.productForm.get('price').value;
+    product.amount = this.productForm.get('amount').value;
+    this.productService.saveProduct(product).subscribe();
+    this.router.navigate(['/dashboard/products']);
+    // this.productForm.reset();
+
   }
 }
